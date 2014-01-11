@@ -1,5 +1,5 @@
 $(function() {
 
-$('#nametag').simplyCountable();
+    $('#nametag').simplyCountable();
 
 });
