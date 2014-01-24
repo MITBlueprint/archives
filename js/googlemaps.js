@@ -9,6 +9,7 @@
      var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
      var marker = new google.maps.Marker({
          position: googleCambridge,
+         animation: google.maps.Animation.DROP,
          map: map,
          title: "Blueprint"
      });
