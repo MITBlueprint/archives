@@ -1,0 +1,32 @@
+
+.countdown-holding span {
+	color: #888;
+}
+.countdown-row {
+	clear: both;
+	width: 100%;
+	padding: 0px 2px;
+	text-align: center;
+}
+.countdown-section {
+	display: block;
+	float: left;
+	font-size: 75%;
+	text-align: center;
+	width: 100px;
+}
+.countdown-amount {
+    font-size: 300%;
+    padding-left: 20px;
+    padding-right: 5px;
+}
+
+.countdown-amount:first-child {
+	padding-left: 0;
+}
+.countdown-period {
+}
+.countdown-descr {
+	display: block;
+	width: 100%;
+}

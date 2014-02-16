@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
+    <title>Blueprint Day-of Updates</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootswatch/3.1.0/yeti/bootstrap.min.css">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/jquery.countdown.css">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Jumbotron -->
+        <div class="row" id="header">
+            <div class="col-lg-4">
+                <img src="img/logo.png" id="logo">
+            </div>
+            <div class="col-lg-4" style="margin-top:25px">
+                <h4 style="margin:0">Time remaining:</h4>
+                <div id="countdown"></div>
+            </div>
+            <div class="col-lg-4">
+                <div id="current_time"><i class="fa fa-clock-o"></i>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Example row of columns -->
+        <div class="row">
+
+            <div class="col-lg-4">
+                <h2>Schedule</h2>
+
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <strong>8AM</strong>
+                            </td>
+                            <td>Check-in</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>9AM</strong>
+                            </td>
+                            <td>Kickoff ceremony (<a href="http://www.youtube.com/watch?v=_kp75AARMyI">livestream</a>)</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>12PM</strong>
+                            </td>
+                            <td>Lunch &amp; optional walk around MIT campus
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>3PM</strong>
+                            </td>
+                            <td>Afternoon snack</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>6PM</strong>
+                            </td>
+                            <td>Dinner</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>8:30PM</strong>
+                            </td>
+                            <td>Coding stops, judging starts</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>10PM</strong>
+                            </td>
+                            <td>Closing &amp; awards ceremony (<a href="http://www.youtube.com/watch?v=v_GckMvRais">livestream</a>)</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>10:30PM</strong>
+                            </td>
+                            <td>End</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+
+
+            <div class="col-lg-6">
+                <h2>Announcements</h2>
+                <div id="an"></div>
+            </div>
+
+
+
+
+            <div class="col-lg-1">
+                <h2>Twitter</h2>
+                <a class="twitter-timeline" href="https://twitter.com/search?q=%23MITBlueprint" data-widget-id="435139846718234624">Tweets about "#MITBlueprint"</a>
+                <script>
+                ! function(d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0],
+                        p = /^http:/.test(d.location) ? 'http' : 'https';
+                    if (!d.getElementById(id)) {
+                        js = d.createElement(s);
+                        js.id = id;
+                        js.src = p + "://platform.twitter.com/widgets.js";
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }
+                }(document, "script", "twitter-wjs");
+                </script>
+
+
+            </div>
+
+        </div>
+
+        <div class="row">
+        <div class="col-lg-12" id="quotes">
+        <h3>Running a hackathon is easy, right?</h3><p>&mdash; Michael Holachek</p>
+        </div>
+        </div>
+
+
+    </div>
+    <!-- /container -->
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.plugin.min.js"></script>
+    <script type="text/javascript" src="js/jquery.countdown.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script>
+    document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
+    </script>
+    <script>
+    $('#countdown').countdown({
+        until: new Date(2014, 1, 22),
+        format: "HMS"
+    });
+
+    function f(n) {
+        // Format integers to have at least two digits.
+        return n < 10 ? '0' + n : n;
+    }
+    setInterval(function() {
+        setCurrentTime();
+    }, 1000);
+
+    setInterval(function() {
+        loadAnnouncements();
+    }, 500);
+
+    function loadAnnouncements() {
+        $("#an").load("http://staging.holachek.com/BlueprintAnnounce.log");
+    }
+
+    function setCurrentTime() {
+        var currentTime = new Date();
+
+        if (currentTime.getHours() < 12) {
+            var currentTimeOfDay = " AM";
+            var hours = currentTime.getHours();
+        } else {
+            var currentTimeOfDay = " PM";
+            var hours = currentTime.getHours() - 12;
+        }
+
+        var formatString = "<h3 style='font-weight:500'>" + hours + ":" + f(currentTime.getMinutes()) + currentTimeOfDay + "</h3>";
+        $('#current_time div').html(formatString);
+    }
+
+    loadAnnouncements();
+    setCurrentTime();
+    </script>
+</body>
+
+</html>
