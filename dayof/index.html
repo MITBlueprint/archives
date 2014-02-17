@@ -32,10 +32,10 @@
         <!-- Jumbotron -->
         <div class="row" id="header">
             <div class="col-lg-4">
-                <img src="img/logo.png" id="logo">
+                <a href="http://blueprint.hackmit.org/"><img src="img/logo.png" id="logo"></a>
             </div>
             <div class="col-lg-4" style="margin-top:25px">
-                <h4 style="margin:0">Time remaining:</h4>
+                <h4 style="margin:0">Build time remaining:</h4>
                 <div id="countdown"></div>
             </div>
             <div class="col-lg-4">
@@ -140,7 +140,7 @@
 
         <div class="row">
         <div class="col-lg-12" id="quotes">
-        <h3>Running a hackathon is easy, right?</h3><p>&mdash; Michael Holachek</p>
+        <h3>http://blueprint.hackmit.org/dayof/</h3><!-- <p>&mdash; Michael Holachek</p> -->
         </div>
         </div>
 
@@ -180,6 +180,9 @@
         if (currentTime.getHours() < 12) {
             var currentTimeOfDay = " AM";
             var hours = currentTime.getHours();
+        } else if (currentTime.getHours() == 12) {
+            var currentTimeOfDay = " PM";
+            var hours = 12;          
         } else {
             var currentTimeOfDay = " PM";
             var hours = currentTime.getHours() - 12;
