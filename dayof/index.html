@@ -31,16 +31,16 @@
 
         <!-- Jumbotron -->
         <div class="row" id="header">
-            <div class="col-lg-4">
+            <div class="col-lg-4 col-sm-2 col-xs-6">
                 <a href="http://blueprint.hackmit.org/">
                     <img src="img/logo.png" id="logo">
                 </a>
             </div>
-            <div class="col-lg-4" style="margin-top:25px">
+            <div class="col-lg-4 col-sm-6 col-xs-6" style="margin-top:25px">
                 <h4 style="margin:0">Build time remaining:</h4>
-                <!-- <div id="countdown"></div> -->
+                <div id="countdown"></div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-4 col-sm-4 hidden-xs">
                 <div id="current_time"><i class="fa fa-clock-o"></i>
                     <div></div>
                 </div>
@@ -50,22 +50,36 @@
         <!-- Example row of columns -->
         <div class="row">
 
-            <div class="col-lg-4">
+            <div class="col-lg-4 col-sm-6">
                 <h2>Schedule</h2>
 
-                <table>
+                <table id="schedule">
                     <tbody>
                         <tr>
                             <td>
                                 <strong>8AM</strong>
                             </td>
-                            <td>Check-in</td>
+                            <td>Check-in &amp; breakfast</td>
                         </tr>
                         <tr>
                             <td>
                                 <strong>9AM</strong>
                             </td>
                             <td>Kickoff ceremony (<a href="http://www.youtube.com/watch?v=_kp75AARMyI">livestream</a>)</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>9:30AM</strong>
+                            </td>
+                            <td>Building starts
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong class="text-danger">11AM</strong>
+                            </td>
+                            <td class="text-danger"><a href="https://techx.wufoo.com/forms/hackmit-blueprint-team-formation/">Team submission</a> deadline
+                            </td>
                         </tr>
                         <tr>
                             <td>
@@ -88,9 +102,15 @@
                         </tr>
                         <tr>
                             <td>
-                                <strong>8:30PM</strong>
+                                <strong class="text-danger">8:30PM</strong>
                             </td>
                             <td>Coding stops, judging starts</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>9:30PM</strong>
+                            </td>
+                            <td><a href="http://resonance.mit.edu/">Resonance</a> a capella concert</td>
                         </tr>
                         <tr>
                             <td>
@@ -102,10 +122,12 @@
                     </tbody>
                 </table>
 
+                <h5 style="padding-top: 20px">Looking for the <a href="https://docs.google.com/spreadsheet/ccc?key=0Ag1bYpqZ5dVodEFFR0oxXzdxU2VTeXdBSXViaWlXOGc&usp=sharing">workshop schedule</a>?</h5>
+
             </div>
 
 
-            <div class="col-lg-6">
+            <div class="col-lg-6 col-sm-6">
                 <h2>Announcements</h2>
                 <div id="an"></div>
             </div>
@@ -113,7 +135,7 @@
 
 
 
-            <div class="col-lg-1">
+            <div class="col-lg-1 col-sm-12">
                 <h2>Twitter</h2>
                 <a class="twitter-timeline" href="https://twitter.com/search?q=%23MITBlueprint" data-widget-id="435139846718234624">Tweets about "#MITBlueprint"</a>
                 <script>
@@ -134,13 +156,6 @@
 
         </div>
 
-        <div class="row">
-            <div class="col-lg-12" id="quotes">
-                <h3>http://blueprint.hackmit.org/dayof/</h3>
-                <!-- <p>&mdash; Michael Holachek</p> -->
-            </div>
-        </div>
-
 
     </div>
     <!-- /container -->
@@ -150,11 +165,6 @@
     <script type="text/javascript" src="js/jquery.countdown.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script>
-    $('#countdown').countdown({
-        until: new Date(2014, 1, 22),
-        format: "HMS"
-    });
-
     function f(n) {
         // Format integers to have at least two digits.
         return n < 10 ? '0' + n : n;
@@ -187,6 +197,18 @@
 
     setInterval(function() {
         setCurrentTime();
+
+        var nowTime = new Date();
+        var startTime = Date.parse("February 22, 2014 09:30")
+        if (nowTime.getTime() > startTime) {
+            $('#countdown').countdown({
+                until: new Date(2014, 1, 22, 20, 30),
+                format: "HMS"
+            });
+        } else {
+            $('#countdown').html('<h3 style="color:#ddd">starts at 9:30AM Saturday</h3>')
+        }
+
     }, 1000);
 
     setInterval(function() {
