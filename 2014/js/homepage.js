@@ -26,7 +26,7 @@ if ($(window).width() > 650) {
 
         if (visited == null) {
             $('body').scrollTop(0);
-            $('head').append('<link rel="stylesheet" href="/css/animate-custom.css">');
+            $('head').append('<link rel="stylesheet" href="css/animate-custom.css">');
             $('#container').prepend('<div id="firstoverlay" class="animated fadeOut"></div>');
             $('.leader h2 span').addClass('fadeIn').addClass('animated');
             $('.leader a.register').addClass('fadeInUpBig').addClass('animated');
